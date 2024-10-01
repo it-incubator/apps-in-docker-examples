@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  main-db:
+    image: postgres:13
+    container_name: it-incubator-main-docker-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"  # Пробрасываем порт для доступа к базе данных
+  test-db:
+    image: postgres:13
+    container_name: it-incubator-test-docker-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: it-incubator.io
+      POSTGRES_DB: TypeOrmExample
+    ports:
+      - "5434:5432"  # Пробрасываем порт для доступа к базе данных

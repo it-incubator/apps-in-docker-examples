@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: it-incubator-nestjs-app
+    restart: always
+    ports:
+      - '3001:3000'
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:13
+    container_name: it-incubator-postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: it-incubator.io
+      POSTGRES_DB: TypeOrmExample
+    ports:
+      - "5434:5432"  # Пробрасываем порт для доступа к базе данных
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+    name: it-incubator-lesson-network
