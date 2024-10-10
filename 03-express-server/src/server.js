@@ -1,10 +1,10 @@
 // server.js
-const express = require('express');
+import express from 'express';
 const app = express();
 const port = 3010;
 
 // Указываем Express использовать папку 'public' для статических файлов
-app.use(express.static('public'));
+app.use(express.static('src/public'));
 
 // Запускаем сервер
 app.listen(port, () => {

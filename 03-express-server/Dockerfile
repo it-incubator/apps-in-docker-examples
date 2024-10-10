@@ -1,17 +1,17 @@
 # Используем официальный образ Node.js
-FROM node:latest
+FROM node:20.9.0
 
 # Создаем рабочую директорию
 WORKDIR /usr/src/app
 
-# Копируем package.json и package-lock.json (если есть)
-COPY package*.json ./
+# Копируем package.json
+COPY package.json ./
 
 # Устанавливаем зависимости
 RUN npm install
 
 # Копируем исходный код
-COPY . .
+COPY src ./src
 
 # Открываем порт
 EXPOSE 3010
