@@ -6,7 +6,7 @@ docker build -t my-nginx-image .
 
 - Запустите Docker-контейнер
 ```bash
-docker run -d -p 8080:80 --name my-nginx-container my-nginx-image
+docker run -d -p 3014:80 --name my-nginx-container my-nginx-image
 ```
 
 > -d запускает контейнер в фоновом режиме. 

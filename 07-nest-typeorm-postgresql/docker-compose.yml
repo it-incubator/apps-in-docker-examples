@@ -9,6 +9,11 @@ services:
       - '3001:3000'
     depends_on:
       - db
+    volumes:
+      # Монтируем текущую директорию в /usr/src/app внутри контейнера
+      - .:/usr/src/app
+      # Избегаем перезаписи node_modules внутри контейнера
+      - /usr/src/app/node_modules
     networks:
       - app-network
 
@@ -21,7 +26,7 @@ services:
       POSTGRES_PASSWORD: it-incubator.io
       POSTGRES_DB: TypeOrmExample
     ports:
-      - "5434:5432"  # Пробрасываем порт для доступа к базе данных
+      - "5444:5432"  # Пробрасываем порт для доступа к базе данных
     networks:
       - app-network
 

@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: it-incubator-nextjs-app
+    restart: always
+    ports:
+      - '3011:3000'
+    volumes:
+      # Монтируем текущую директорию в /usr/src/app внутри контейнера
+      - .:/app
+      # Избегаем перезаписи node_modules внутри контейнера
+      - /app/node_modules

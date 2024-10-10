@@ -13,8 +13,14 @@ COPY package.json pnpm-lock.yaml ./
 # Устанавливаем зависимости
 RUN pnpm install --frozen-lockfile
 
+# Копируем остальные файлы приложения
+COPY . .
+
+# Собираем Next.js приложение
+RUN pnpm build
+
 # Открываем порт приложения
 EXPOSE 3000
 
 # Запускаем приложение
-CMD ["pnpm", "dev"]
+CMD ["pnpm", "start"]
