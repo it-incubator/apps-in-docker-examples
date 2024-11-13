@@ -1,0 +1,26 @@
+services:
+  frontend:
+    build:
+      context: ./front-vite-app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # Serve the frontend on port 3000
+  backend:
+    build:
+      context: ./back-express-mongodb
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/mydatabase
+      - PORT=5000
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ""
+      MONGO_INITDB_ROOT_PASSWORD: ""
